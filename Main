@@ -1,0 +1,24 @@
+import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Main {
+    public static void main(String[] args) {
+        Timer timer = new Timer();
+        for (int i = 0; i < 10; i++) {
+            timer.schedule(new NotepadTask(), i * 10000);
+        }
+    }
+
+    static class NotepadTask extends TimerTask {
+        @Override
+        public void run() {
+            try {
+                ProcessBuilder pb = new ProcessBuilder("notepad.exe");
+                pb.start();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
